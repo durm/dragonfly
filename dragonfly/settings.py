@@ -82,7 +82,7 @@ db_conf = {
 try:
     import dragonfly_db_conf
     
-    db_conf = titan_db_conf.db_conf
+    db_conf = dragonfly_db_conf.db_conf
 except:
     db_conf = db_conf
 

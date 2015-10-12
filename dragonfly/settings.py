@@ -80,7 +80,7 @@ db_conf = {
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 }
 try:
-    import titan_db_conf
+    import dragonfly_db_conf
     
     db_conf = titan_db_conf.db_conf
 except:

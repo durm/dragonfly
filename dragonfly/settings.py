@@ -75,13 +75,20 @@ WSGI_APPLICATION = 'dragonfly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+db_conf = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 }
+try:
+    import titan_db_conf
+    
+    db_conf = titan_db_conf.db_conf
+except:
+    db_conf = db_conf
 
+DATABASES = {
+    'default': db_conf
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

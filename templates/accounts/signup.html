@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Sign in
+    Sing up
 {% endblock %}
 
 {% block content %}
     <form action="" method="post">
-        <legend>Sign in</legend>
+        <legend>Sign up</legend>
     {% csrf_token %}
         {% if error %}
             <div>
@@ -18,14 +18,19 @@
             <input type="text" name="username" required="required"/>
         </div>
         <div>
+            <label>Email</label>
+            <input type="email" name="email" required="required"/>
+        </div>
+        <div>
             <label>Password</label>
             <input type="password" name="password" required="required"/>
         </div>
         <div>
-            <input type="submit"/>
+            <label>Confirm password</label>
+            <input type="password" name="confirm_password" required="required"/>
         </div>
         <div>
-            <a href="{% url 'signup_endpoint' %}">Sing up</a> | <a href="">Forgot password?</a>
+            <input type="submit" value="Войти"/>
         </div>
     </form>
 {% endblock %}

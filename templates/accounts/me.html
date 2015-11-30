@@ -1,1 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ user.username }}
+{% endblock %}
+
+{% block content %}
+<div>
 {{ user.username }} (<a href="{% url 'logout_endpoint' %}">Выход</a>)
+</div>
+{% endblock %}
+
+{% block libs %}
+
+{% endblock %}

@@ -76,13 +76,20 @@ WSGI_APPLICATION = 'dragonfly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+db_conf = {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 }
+try:
+    import dragonfly_db_conf
+    
+    db_conf = dragonfly_db_conf.db_conf
+except:
+    db_conf = db_conf
 
+DATABASES = {
+    'default': db_conf
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -102,3 +109,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_DIR = os.path.join(os.path.dirname(BASE_DIR), "data")
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")

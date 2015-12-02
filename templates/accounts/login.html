@@ -25,7 +25,8 @@
             <input type="submit"/>
         </div>
         <div>
-            <a href="{% url 'signup_endpoint' %}">Sing up</a> | <a href="">Forgot password?</a>
+            <a href="{% url 'signup_endpoint' %}">Sing up</a> | 
+            <a href="{% url 'recovery_endpoint' %}">Forgot password?</a>
         </div>
     </form>
 {% endblock %}

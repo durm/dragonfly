@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Password recovery
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        <legend>Password recovery</legend>
+        {% csrf_token %}
+        {% if error %}
+            <div>
+                {{ error }}
+            </div>
+        {% endif %}
+        <div>
+            <label>Email</label>
+            <input type="email" name="email" required="required"/>
+        </div>
+        <div>
+            <input type="submit"/>
+        </div>
+    </form>
+{% endblock %}
+
+{% block libs %}
+
+{% endblock %}

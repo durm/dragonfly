@@ -81,9 +81,15 @@ db_conf = {
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 }
 try:
-    import dragonfly_db_conf
+    import dragonfly_conf
     
-    db_conf = dragonfly_db_conf.db_conf
+    db_conf = dragonfly_conf.db_conf
+    
+    EMAIL_HOST = 'smtp.yandex.ru'
+    EMAIL_HOST_USER = dragonfly_conf.EMAIL_HOST_USER
+    EMAIL_HOST_PASSWORD = dragonfly_conf.EMAIL_HOST_PASSWORD
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True 
 except:
     db_conf = db_conf
 
@@ -114,3 +120,4 @@ MEDIA_URL = '/media/'
 MEDIA_DIR = os.path.join(os.path.dirname(BASE_DIR), "data")
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+

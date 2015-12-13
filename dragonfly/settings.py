@@ -85,11 +85,11 @@ try:
     
     db_conf = dragonfly_conf.db_conf
     
-    EMAIL_HOST = 'smtp.yandex.ru'
+    EMAIL_HOST = dragonfly_conf.EMAIL_HOST
     EMAIL_HOST_USER = dragonfly_conf.EMAIL_HOST_USER
     EMAIL_HOST_PASSWORD = dragonfly_conf.EMAIL_HOST_PASSWORD
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True 
+    EMAIL_PORT = dragonfly_conf.EMAIL_PORT
+    EMAIL_USE_TLS = dragonfly_conf.EMAIL_USE_TLS
 except:
     db_conf = db_conf
 

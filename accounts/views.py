@@ -114,8 +114,7 @@ def recovery_endpoint(request):
             account.save()
             
             try:
-                send_mail('Password recovery', 'Pin-code: {0}'.format(code), 'info@alexkorotkov.ru',
-        [user.email], fail_silently=False)
+                send_mail('Password recovery', 'Pin-code: {0}'.format(code), 'info@alexkorotkov.ru', [user.email], fail_silently=False)
             except:
                 ctx["error"] = "Pin sending error!"
                 return render_to_response("accounts/recovery.html", ctx, context_instance=RequestContext(request))

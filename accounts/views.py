@@ -149,6 +149,9 @@ def recovery_form_endpoint(request):
             account.user.set_password(password)
             account.user.save()
             
+            account.password_recovery_code = None
+            account.save()
+            
             return redirect(reverse('login_endpoint'))
         except Exception as e:
             ctx["error"] = str(e)

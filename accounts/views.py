@@ -126,4 +126,31 @@ def recovery_endpoint(request):
         raise Http404
         
 def recovery_form_endpoint(request):
-    raise Http404
+    if request.user.is_authenticated():
+        return redirect(reverse('me_endpoint'))
+    tpl = "accounts/recovery_form.html"
+    ctx = {}
+    ctx.update(csrf(request))
+    if request.method == 'GET':
+        return rendering(request, tpl, ctx)
+    elif request.method == 'POST':
+        pin = request.POST['pin']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        
+        try:
+            assert password == confirm_password, "Password and confirmation are not equal."
+            
+            try:
+                account = Account.objects.get(password_recovery_code=pin)
+            except Account.DoesNotExist:
+                raise Exception("Pin {0} not found.".format(pin))
+                
+            account.user.set_password(password)
+            
+            return redirect(reverse('login_endpoint'))
+        except Exception as e:
+            ctx["error"] = str(e)
+            return rendering(request, tpl, ctx)
+    else:
+        raise Http404

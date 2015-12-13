@@ -25,7 +25,7 @@ def handle_request(request, tpl, do_post):
     elif request.method == 'POST':
         try:
             return do_post(request, ctx)
-        except:
+        except Exception as e:
             ctx["error"] = str(e)
             return rendering(request, tpl, ctx)
     else:

@@ -147,6 +147,7 @@ def recovery_form_endpoint(request):
                 raise Exception("Pin {0} not found.".format(pin))
                 
             account.user.set_password(password)
+            account.user.save()
             
             return redirect(reverse('login_endpoint'))
         except Exception as e:
